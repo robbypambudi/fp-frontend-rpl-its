@@ -2,12 +2,13 @@ import * as React from 'react';
 import { get, RegisterOptions, useFormContext } from 'react-hook-form';
 import { FiAlertCircle, FiCheck } from 'react-icons/fi';
 
-import Typography from '@/components/Typography';
+import Typography, { TypographyColor } from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 
 type InputProps = {
   id: string;
   label: string;
+  color?: keyof typeof TypographyColor;
   placeholder?: string;
   validate?: RegisterOptions;
   showValid?: boolean;
@@ -18,6 +19,7 @@ const Input = ({
   id,
   validate,
   label,
+  color = 'white',
   placeholder,
   showValid = false,
   helperText,
@@ -31,18 +33,18 @@ const Input = ({
   const error = get(errors, id);
   return (
     <div className='mt-1'>
-      <label htmlFor={id} className='block'>
+      <Typography as='label' className='block' color={color}>
         {label}
-      </label>
+      </Typography>
       <div className='relative'>
         <input
           type={type}
           {...register(id, validate)}
           className={clsxm(
-            'rounded-md',
+            'rounded-md border-none bg-[#F9FAFB]',
             error && 'border-red-500 focus:outline-none',
             showValid && isValid && 'border-green-500',
-            'px-4 py-2 border block w-full'
+            'px-4 py-2 block w-full'
           )}
           placeholder={placeholder}
         />
