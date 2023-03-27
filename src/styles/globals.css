@@ -7,6 +7,9 @@
     max-width: 68.75rem;
     @apply mx-auto w-11/12;
   }
+  .layout--content {
+    padding: 0 1.5rem;
+  }
   .layout--wide {
     max-width: 90rem;
     @apply mx-auto w-11/12;
@@ -19,4 +22,8 @@
     max-width: 100%;
     @apply mx-auto w-11/12;
   }
+}
+
+.background-login {
+  background: linear-gradient(90deg, #181818 0%, rgba(24, 24, 24, 0) 100%);
 }

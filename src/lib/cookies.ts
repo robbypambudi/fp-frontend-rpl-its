@@ -1,19 +1,18 @@
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
-// !important: rename this file to cookies.ts
 export const getToken = (): string => {
-  return cookies.get('@myevent/token');
+  return cookies.get('@rpl/token');
 };
 
 export const setToken = (token: string) => {
-  cookies.set('@myevent/token', token, {
+  cookies.set('@rpl/token', token, {
     path: '/',
   });
 };
 
 export const removeToken = () => {
-  cookies.remove('@myevent/token', {
+  cookies.remove('@rpl/token', {
     path: '/',
   });
 };

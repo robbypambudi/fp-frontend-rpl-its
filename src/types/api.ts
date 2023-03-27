@@ -1,24 +1,26 @@
 export type UninterceptedApiError = {
-  code: number;
-  status: string;
+  success: boolean;
   message: string | Record<string, string[]>;
+  status: number;
 };
 
 export type ApiReturn<T> = {
-  code: string;
-  status: string;
+  success: boolean;
+  message: string;
+  status: number;
   data: T;
 };
 
 export type ApiError = {
-  code: number;
-  status: string;
+  success: boolean;
   message: string;
+  status: number;
 };
 
 export interface PaginatedApiResponse<DataType, metaType> {
-  code: number;
-  status: string;
+  success: boolean;
+  message: string;
+  status: number;
   data: DataType;
   meta:
     | ({

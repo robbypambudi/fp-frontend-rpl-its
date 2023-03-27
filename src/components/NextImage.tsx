@@ -46,7 +46,7 @@ export default function NextImage({
           imgClassName,
           status === 'loading' && clsxm('animate-pulse', blurClassName)
         )}
-        src={`/images/${src}`}
+        src={`${src}`}
         width={width}
         height={height}
         alt={alt}
