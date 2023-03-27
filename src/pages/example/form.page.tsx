@@ -35,7 +35,7 @@ export default function FormExample() {
   };
 
   return (
-    <main>
+    <main className='bg-gray-200'>
       <section className='layout min-h-screen mt-10'>
         <h1 className='text-3xl font-bold underline'>
           Example Of Smart Form Components
@@ -48,6 +48,7 @@ export default function FormExample() {
           {({ formState: { isDirty } }) => (
             <>
               <Input
+                color='primary'
                 id='name'
                 label='Nama'
                 placeholder='Masukkan nama'
