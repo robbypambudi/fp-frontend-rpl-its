@@ -4,17 +4,24 @@ import * as React from 'react';
 import Button from '@/components/buttons/Button';
 import Form from '@/components/form/Form';
 import Input from '@/components/form/Input';
+import withAuth from '@/components/hoc/withAuth';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import useMutationToast from '@/hooks/toast/useMutationToast';
 import api from '@/lib/api';
 import { setToken } from '@/lib/cookies';
+import useAuthStore from '@/store/useAuthStore';
+import { ApiReturn } from '@/types/api';
+import { User } from '@/types/entity/user';
 type LoginFormValue = {
   'user-identifier': string;
   password: string;
 };
 
-export default function LoginPage() {
+export default withAuth(LoginPage, 'public');
+
+function LoginPage() {
+  const login = useAuthStore.useLogin();
   const { mutate, isLoading } = useMutationToast<void, LoginFormValue>(
     useMutation(async (data) => {
       const res = api.post('/users/login', data);
@@ -22,7 +29,13 @@ export default function LoginPage() {
       setToken(token);
 
       // eslint-disable-next-line unused-imports/no-unused-vars
-      const user = await api.get('/user/me');
+      const user = await api.get<ApiReturn<User>>('/users/me');
+      login({
+        ...user.data.data,
+        token: token + '',
+      });
+
+      return res;
     })
   );
 
