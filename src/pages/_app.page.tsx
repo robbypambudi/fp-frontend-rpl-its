@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import '@/styles/nprogress.css';
 
+// import { Montserrat } from '@next/font/google';
 import {
   QueryClient,
   QueryClientProvider,
@@ -14,6 +15,13 @@ import nProgress from 'nprogress';
 import Toast from '@/components/Toast';
 import api from '@/lib/api';
 import SEO from '@/seo.config';
+
+// BUG
+// const montserrat = Montserrat({
+//   subsets: ['latin'],
+//   variable: '--font-montserrat',
+//   display: 'swap',
+// });
 
 Router.events.on('routeChangeStart', nProgress.start);
 Router.events.on('routeChangeError', nProgress.done);
@@ -36,7 +44,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Toast />
       <DefaultSeo {...SEO} />
-      <Component {...pageProps} />
+      <div>
+        <Component {...pageProps} />
+      </div>
     </QueryClientProvider>
   );
 }

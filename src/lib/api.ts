@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 const isServer = () => typeof window === 'undefined';
 import { getToken } from '@/lib/cookies';
 import { UninterceptedApiError } from '@/types/api';
-const context = <GetServerSidePropsContext>{};
+let context = <GetServerSidePropsContext>{};
 
 const baseURL =
   process.env.NEXT_PUBLIC_RUN_MODE === 'local'
@@ -19,7 +19,7 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-
+  timeoutErrorMessage: 'Request timeout',
   withCredentials: false,
 });
 
@@ -69,3 +69,7 @@ api.interceptors.response.use(
   }
 );
 export default api;
+
+export const setApiContext = (ctx: GetServerSidePropsContext) => {
+  context = ctx;
+};

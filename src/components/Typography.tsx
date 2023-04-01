@@ -35,6 +35,7 @@ type TypographyProps<T extends React.ElementType> = {
   className?: string;
   color?: keyof typeof TypographyColor;
   variant?: keyof typeof TypographyVariant;
+  font?: string;
   children: React.ReactNode;
 };
 
@@ -44,6 +45,7 @@ export default function Typography<T extends React.ElementType>({
   className,
   color = 'primary',
   variant = 'p',
+  font = 'montserrat',
   ...rest
 }: TypographyProps<T>) {
   const Component = as || 'p';
@@ -77,6 +79,10 @@ export default function Typography<T extends React.ElementType>({
           color === 'primary' && 'text-gray-900',
           color === 'danger' && 'text-red-500',
         ],
+
+        // Fonts
+        [font === 'montserrat' && '--font-montserrat'],
+
         className
       )}
       {...rest}

@@ -4,26 +4,34 @@ import { BiChevronDown } from 'react-icons/bi';
 import { FaTimes } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
+import Button from '@/components/buttons/Button';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import NextImage from '@/components/NextImage';
 import clsxm from '@/lib/clsxm';
+import { removeToken } from '@/lib/cookies';
 
-const links = [
+type NavigationType = {
+  href: string;
+  label: string;
+  children?: {
+    href: string;
+    label: string;
+  }[];
+  isPrivate?: boolean; // Hide from public
+};
+
+const links: NavigationType[] = [
   { href: '/about-us', label: 'Tentang Kami' },
   { href: '/coming-soon', label: 'Produk' },
-  {
-    href: '/coming-soon',
-    label: 'Acara',
-    children: [
-      { href: '/pre-event', label: 'Pre Event' },
-      { href: '/coming-soon', label: 'Opening' },
-      { href: '/coming-soon', label: 'Main Event' },
-      { href: '/coming-soon', label: 'Gebyar ITS EXPO' },
-    ],
-  },
 ];
 
-export default function Navbar() {
+export default function Navbar({
+  isAuth,
+  logout,
+}: {
+  isAuth: boolean;
+  logout: () => void;
+}) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [colorChange, setColorChange] = React.useState(false);
   const [showAcara, setShowAcara] = React.useState(false);
@@ -69,7 +77,7 @@ export default function Navbar() {
       >
         <UnstyledLink href='/' className='font-bold hover:text-discolored-500'>
           <NextImage
-            src='/logo-navbar.png'
+            src='/logo.png'
             alt='footer logo'
             width='98'
             height='68'
@@ -106,9 +114,7 @@ export default function Navbar() {
                               <UnstyledLink
                                 href={href}
                                 className={`${
-                                  active
-                                    ? 'bg-tainted-400 text-typo'
-                                    : 'text-discolored-1000'
+                                  active ? 'text-gray-100' : 'text-white'
                                 } group flex w-full items-center rounded-md px-2 py-2 text-sm  mt-1`}
                               >
                                 {label}
@@ -125,7 +131,7 @@ export default function Navbar() {
                   <li key={`${href}${label}`}>
                     <UnstyledLink
                       href={href}
-                      className='hover:text-discolored-500 text-discolored-1000 font-medium'
+                      className='hover:text-gray-100 text-white font-medium'
                     >
                       {label}
                     </UnstyledLink>
@@ -133,12 +139,23 @@ export default function Navbar() {
                 );
               }
             })}
-            <UnstyledLink
-              href='/login'
-              className='bg-tainted-300 px-5 py-1.5 rounded-lg text-discolored-700 hover:bg-tainted-400 font-semibold'
-            >
-              Masuk
-            </UnstyledLink>
+            {!isAuth ? (
+              <UnstyledLink
+                href='/login'
+                className='bg-tainted-300 px-5 py-1.5 rounded-lg text-discolored-700 hover:bg-tainted-400 font-semibold'
+              >
+                Masuk
+              </UnstyledLink>
+            ) : (
+              <Button
+                onClick={() => {
+                  removeToken();
+                  logout();
+                }}
+              >
+                Logout
+              </Button>
+            )}
           </ul>
         </nav>
 
