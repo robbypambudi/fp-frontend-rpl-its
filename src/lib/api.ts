@@ -50,7 +50,6 @@ api.interceptors.response.use(
     return config;
   },
   (error: AxiosError<UninterceptedApiError>) => {
-    // parse error
     if (error.response?.data.message) {
       return Promise.reject({
         ...error,

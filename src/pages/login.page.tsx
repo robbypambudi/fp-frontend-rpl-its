@@ -17,7 +17,7 @@ type LoginFormValue = {
 export default function LoginPage() {
   const { mutate, isLoading } = useMutationToast<void, LoginFormValue>(
     useMutation(async (data) => {
-      const res = api.post('/user/login', data);
+      const res = api.post('/users/login', data);
       const { token } = (await res).data.data;
       setToken(token);
 
@@ -55,6 +55,7 @@ export default function LoginPage() {
                     <Input
                       id='password'
                       label='Password'
+                      type='password'
                       placeholder='Masukkan password'
                     />
                   </div>

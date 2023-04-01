@@ -1,33 +1,36 @@
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 
 import Button from '@/components/buttons/Button';
 import Form from '@/components/form/Form';
 import Input from '@/components/form/Input';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import useMutationToast from '@/hooks/toast/useMutationToast';
 import api from '@/lib/api';
-import { setToken } from '@/lib/cookies';
-type LoginFormValue = {
-  'user-identifier': string;
+
+type RegisterUser = {
+  name: string;
+  username: string;
+  email: string;
   password: string;
+  'no-telp': string;
 };
 
 export default function LoginPage() {
-  const { mutate, isLoading } = useMutationToast<void, LoginFormValue>(
-    useMutation(async (data) => {
-      const res = api.post('/user/login', data);
-      const { token } = (await res).data.data;
-      setToken(token);
-
-      // eslint-disable-next-line unused-imports/no-unused-vars
-      const user = await api.get('/user/me');
+  const router = useRouter();
+  const { mutate, isLoading } = useMutationToast<void, RegisterUser>(
+    useMutation((data) => {
+      return api.post('/users', data);
     })
   );
 
-  const onSubmit = (data: LoginFormValue) => {
-    mutate(data);
+  const onSubmit = (data: RegisterUser) => {
+    mutate(data, {
+      onSuccess: () => router.push('/users'),
+    });
   };
   return (
     <main className='bg-[url(/background/BG2.png)] bg-cover bg-[#303030]'>
@@ -43,32 +46,28 @@ export default function LoginPage() {
               </Typography>
             </div>
 
-            <Form<LoginFormValue> onSubmit={onSubmit}>
+            <Form<RegisterUser> onSubmit={onSubmit}>
               {({ formState: { isDirty } }) => (
                 <div>
                   <div className='space-y-2'>
+                    <Input id='name' label='Name' placeholder='Masukkan nama' />
                     <Input
-                      id='user-identifier'
-                      label='Name'
-                      placeholder='Masukkan nama'
-                    />
-                    <Input
-                      id='user-identifier'
+                      id='username'
                       label='Username'
                       placeholder='Masukkan username'
                     />
                     <Input
-                      id='user-identifier'
+                      id='email'
                       label='Email'
                       placeholder='Masukkan email'
                     />
                     <Input
-                      id='user-identifier'
+                      id='password'
                       label='Phone Number'
                       placeholder='(+62)'
                     />
                     <Input
-                      id='password'
+                      id='no-telp'
                       label='Password'
                       placeholder='Masukkan password'
                     />
@@ -86,7 +85,9 @@ export default function LoginPage() {
                   <div className='text-center pt-5 text-[#687083]'>
                     <p>
                       Already have an account?{' '}
-                      <span className='text-white'>Log In</span>
+                      <UnstyledLink className='text-white' href='/login'>
+                        Log In
+                      </UnstyledLink>
                     </p>
                   </div>
                 </div>
