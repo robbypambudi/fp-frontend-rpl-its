@@ -23,13 +23,13 @@ export default function LoginPage() {
   const router = useRouter();
   const { mutate, isLoading } = useMutationToast<void, RegisterUser>(
     useMutation((data) => {
-      return api.post('/users', data);
+      return api.post('/users/', data);
     })
   );
 
   const onSubmit = (data: RegisterUser) => {
     mutate(data, {
-      onSuccess: () => router.push('/users'),
+      onSuccess: () => router.push('/login'),
     });
   };
   return (

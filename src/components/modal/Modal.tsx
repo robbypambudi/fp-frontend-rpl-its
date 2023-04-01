@@ -12,7 +12,7 @@ type ModalProps = {
   modalContainerClassName?: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-} & Omit<ExtractProps<typeof Dialog>, 'onClose'>;
+};
 
 export function ModalRoot({
   className,
@@ -20,7 +20,6 @@ export function ModalRoot({
   modalContainerClassName,
   open,
   setOpen,
-  ...rest
 }: ModalProps) {
   const containerRef = React.createRef<HTMLDivElement>();
 
@@ -29,7 +28,6 @@ export function ModalRoot({
       <Dialog
         as='div'
         className={clsxm('fixed inset-0 z-40 overflow-y-auto', className)}
-        {...rest}
         onClose={setOpen}
         initialFocus={containerRef}
       >
