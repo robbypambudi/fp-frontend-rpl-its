@@ -1,3 +1,7 @@
+import { Merge } from 'react-hook-form';
+
+import { Session } from '@/types/entity/session';
+
 export interface Film {
   id: string;
 
@@ -18,3 +22,5 @@ export interface Film {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type DetailFilm = Merge<Film, { session: Session[] }>;

@@ -25,6 +25,7 @@
     "axios": "^1.2.1",
     "clsx": "^1.2.1",
     "cssnano": "^5.1.14",
+    "date-fns": "^2.29.3",
     "eslint": "^8.30.0",
     "https-proxy-agent": "^5.0.1",
     "immer": "^9.0.16",
