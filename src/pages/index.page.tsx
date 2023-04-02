@@ -92,7 +92,7 @@ export default function Home({
             <Typography variant='h2' as='h2' color='white'>
               NOW SHOWING
             </Typography>
-            <div className='gap-2 flex flex-wrap'>
+            <div className='gap-28 grid grid-cols-3 pt-5'>
               {nowplaying.map((film) => (
                 <PlayingFilmCard film={film} key={film.id} />
               ))}
