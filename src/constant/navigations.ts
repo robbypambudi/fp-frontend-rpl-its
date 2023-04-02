@@ -9,4 +9,10 @@ export const navigations: Navigation[] = [
     exactMatch: true,
     icon: FiFileText,
   },
+  {
+    name: 'Buat Film',
+    href: '/admin/create',
+    exactMatch: true,
+    icon: FiFileText,
+  },
 ];

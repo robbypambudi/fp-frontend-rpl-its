@@ -13,8 +13,8 @@ export interface WithAuthProps {
 }
 
 const USER_ROUTE = '/';
-const ADMIN_ROUTE = '/';
-const LOGIN_ROUTE = '/';
+const ADMIN_ROUTE = '/admin';
+const LOGIN_ROUTE = '/login';
 
 enum RouteRole {
   public,

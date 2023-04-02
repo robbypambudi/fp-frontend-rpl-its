@@ -13,6 +13,7 @@ enum ButtonSize {
 }
 
 enum ButtonVariant {
+  'noorple',
   'red',
   'yellow',
   'green',
@@ -99,6 +100,10 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
               'hover:bg-tainted-600',
               'active:bg-tainted-700',
               'disabled:bg-tainted-600 disabled:brightness-90 disabled:hover:bg-tainted-700',
+            ],
+            variant === 'noorple' && [
+              'bg-[#494949] text-white rounded-3xl',
+              'transition hover:scale-105 hover:ease-out duration-500',
             ],
           ],
           //#endregion  //*======== Variants ===========

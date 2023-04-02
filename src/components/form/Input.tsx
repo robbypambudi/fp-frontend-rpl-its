@@ -12,6 +12,7 @@ type InputProps = {
   placeholder?: string;
   validate?: RegisterOptions;
   showValid?: boolean;
+  labelColor?: keyof typeof TypographyColor;
   helperText?: string;
 } & React.ComponentPropsWithRef<'input'>;
 
@@ -19,9 +20,9 @@ const Input = ({
   id,
   validate,
   label,
-  color = 'white',
   placeholder,
   showValid = false,
+  labelColor = 'white',
   helperText,
   type = 'text',
 }: InputProps) => {
@@ -33,7 +34,7 @@ const Input = ({
   const error = get(errors, id);
   return (
     <div className='mt-1'>
-      <Typography as='label' className='block' color={color}>
+      <Typography as='label' className='block' color={labelColor}>
         {label}
       </Typography>
       <div className='relative'>
