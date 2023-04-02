@@ -18,6 +18,7 @@ enum TypographyVariant {
 }
 
 enum TypographyColor {
+  'white',
   'primary',
   'secondary',
   'tertiary',
@@ -73,6 +74,7 @@ export default function Typography<T extends React.ElementType>({
 
         //#region  //*=========== Color ===========
         [
+          color === 'white' && ['text-white'],
           color === 'primary' && ['text-typo'],
           color === 'secondary' && ['text-typo-secondary'],
           color === 'tertiary' && ['text-typo-tertiary'],
