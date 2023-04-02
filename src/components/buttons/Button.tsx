@@ -9,6 +9,7 @@ enum ButtonVariant {
   'outline',
   'danger',
   'ghost',
+  'noorple',
 }
 enum ButtonSize {
   'sm',
@@ -88,6 +89,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'bg-clear text-typo-secondary',
               'hover:bg-secondary-200',
               'active:bg-secondary-400 disabled:bg-secondary-400 disabled:brightness-95',
+            ],
+            variant === 'noorple' && [
+              'bg-[#494949] text-white rounded-3xl',
+              'transition hover:scale-105 hover:ease-out duration-500',
             ],
           ],
           //#endregion  //*======== Variants ===========

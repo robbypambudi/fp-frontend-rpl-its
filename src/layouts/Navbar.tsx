@@ -64,7 +64,7 @@ export default function Navbar({
     <header
       className={clsxm(
         'fixed top-0 z-[100] w-full bg-transparent font-secondary transition-colors duration-300',
-        colorChange && 'bg-tainted-100'
+        colorChange && 'bg-[#18181850]'
       )}
     >
       {/* Desktop Nav Start */}
@@ -79,10 +79,10 @@ export default function Navbar({
           <NextImage
             src='/logo.png'
             alt='footer logo'
-            width='98'
-            height='68'
+            width='100'
+            height='70'
             priority={true}
-            className='w-20'
+            className='w-12'
           />
         </UnstyledLink>
         <nav className='hidden md:block'>
@@ -142,12 +142,13 @@ export default function Navbar({
             {!isAuth ? (
               <UnstyledLink
                 href='/login'
-                className='bg-tainted-300 px-5 py-1.5 rounded-lg text-discolored-700 hover:bg-tainted-400 font-semibold'
+                className='bg-[#494949] text-white  px-5 py-1.5 rounded-3xl font-semibold transition hover:scale-105 hover:ease-out duration-500'
               >
                 Masuk
               </UnstyledLink>
             ) : (
               <Button
+                variant='noorple'
                 onClick={() => {
                   removeToken();
                   logout();
@@ -183,8 +184,8 @@ export default function Navbar({
             <NextImage
               src='/logo-navbar.png'
               alt='footer logo'
-              width='98'
-              height='68'
+              width='54'
+              height='57'
               priority={true}
               className=' mx-auto'
             />
