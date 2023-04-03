@@ -58,18 +58,33 @@ export default function LoginPage() {
                     />
                     <Input
                       id='email'
+                      type='email'
                       label='Email'
                       placeholder='Masukkan email'
-                    />
-                    <Input
-                      id='password'
-                      label='Phone Number'
-                      placeholder='(+62)'
+                      validate={{
+                        required: 'Email is required',
+                      }}
                     />
                     <Input
                       id='no-telp'
+                      type='tel'
+                      label='Phone Number'
+                      placeholder='(+62)'
+                      validate={{
+                        required: 'Phone number is required',
+                        pattern: {
+                          value: /^(\+62|62|0)(\d{3,4}-?){2}\d{3,4}$/,
+                          message: 'Invalid phone number',
+                        },
+                      }}
+                    />
+                    <Input
+                      id='password'
                       label='Password'
                       placeholder='Masukkan password'
+                      validate={{
+                        required: 'Password is required',
+                      }}
                     />
                   </div>
                   <div className='mt-10'>

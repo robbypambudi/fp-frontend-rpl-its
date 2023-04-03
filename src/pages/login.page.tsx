@@ -5,6 +5,7 @@ import Button from '@/components/buttons/Button';
 import Form from '@/components/form/Form';
 import Input from '@/components/form/Input';
 import withAuth from '@/components/hoc/withAuth';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import useMutationToast from '@/hooks/toast/useMutationToast';
@@ -62,7 +63,7 @@ function LoginPage() {
                   <div className='space-y-4'>
                     <Input
                       id='user-identifier'
-                      label='Username / Password'
+                      label='Username / Email'
                       placeholder='Masukkan username atau email'
                     />
                     <Input
@@ -81,6 +82,12 @@ function LoginPage() {
                     >
                       Login
                     </Button>
+                    <Typography variant='p' color='white' className='mt-4'>
+                      Don&apos;t have an account?{' '}
+                      <UnstyledLink href='/signup' className='text-[#FFC700]'>
+                        Sign Up
+                      </UnstyledLink>
+                    </Typography>
                   </div>
                 </div>
               )}
